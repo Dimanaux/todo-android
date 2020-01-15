@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ToDo</string>
     <string name="create_todo">Create todo</string>
+    <string name="todo_example">E.g. pour flowers</string>
 </resources>

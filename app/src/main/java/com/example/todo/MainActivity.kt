@@ -1,37 +1,27 @@
 package com.example.todo
 
 import android.os.Bundle
-import android.view.inputmethod.EditorInfo
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.example.todo.dsl.onSubmit
+import com.facebook.stetho.Stetho
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var notificationView: TodoNotificationView
+    private lateinit var todoInteractor: TodoInteractor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         notificationView = TodoNotificationView(this)
-        todoCreateButton.setOnClickListener {
-            createTodo(todoInput.text.toString())
-        }
+
+        todoInteractor = TodoInteractor(notificationView)
         todoInput.onSubmit {
-            createTodo(todoInput.text.toString())
+            todoInteractor.createNew(todoInput.text.toString())
         }
-    }
 
-    private fun createTodo(text: String) {
-        notificationView.showNotification("TODO", text)
-    }
-
-
-    private fun EditText.onSubmit(callback: () -> Unit) {
-        setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                callback()
-            }
-            return@setOnEditorActionListener true
+        if (BuildConfig.DEBUG) {
+            Stetho.initializeWithDefaults(this)
         }
     }
 }

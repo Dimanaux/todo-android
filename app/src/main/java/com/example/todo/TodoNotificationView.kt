@@ -24,12 +24,10 @@ class TodoNotificationView(private val context: Context) {
                     channelId,
                     "TODO_CHANNEL",
                     NotificationManager.IMPORTANCE_DEFAULT
-                ).apply { description = "Notification channel where todo items appear." }
+                ).apply { description = "Notification channel where todo ites appear." }
             }
             return _channel!!
         }
-
-    val myLazyString: String by lazy { "Hello" }
 
     fun showNotification(title: String, message: String) {
         if (oreoOrNewer()) {
@@ -64,5 +62,5 @@ class TodoNotificationView(private val context: Context) {
         return pendingIntent
     }
 
-    private fun oreoOrNewer() = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O
+    private fun oreoOrNewer() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
 }
