@@ -8,5 +8,6 @@ data class Todo(
     @PrimaryKey(autoGenerate = true)
     var id: Long? = null,
     var text: String,
-    var priority: Int = 0
+    var priority: Int = 0,
+    var status: TodoStatus = TodoStatus.New
 )

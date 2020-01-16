@@ -18,13 +18,13 @@ class Channels(private val notificationManager: NotificationManager) {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun createChannel(id: String, importance: Int) =
         channels.computeIfAbsent(importance) {
-            NotificationChannel(id, "TODO_CHANNEL", importance).also {
-                it.description = "Notification channel where todo ites appear."
+            NotificationChannel(id, "todo_channel", importance).also {
+                it.description = "Notification channel where todo items appear."
                 notificationManager.createNotificationChannel(it)
             }
         }
 
-    private fun channelId(importance: Int) = "COM.EXAMPLE.TODO.$importance"
+    private fun channelId(importance: Int) = "com.example.todo.$importance"
 
     private fun oreoOrNewer() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
 }

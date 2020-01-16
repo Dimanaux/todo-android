@@ -13,6 +13,12 @@ interface TodoDao {
     @Query("SELECT * FROM todo;")
     fun findAll(): Flowable<Todo>
 
+    @Query("SELECT * FROM todo WHERE id = :id LIMIT 1;")
+    fun findById(id: Int): Single<Todo>
+
+    @Query("SELECT * FROM todo WHERE status = :status")
+    fun findByStatus(status: Int): Flowable<Todo>
+
     @Update
     fun update(todo: Todo)
 

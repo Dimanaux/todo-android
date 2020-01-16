@@ -14,4 +14,3 @@ fun TodoDao.save(todo: Todo): Single<Todo> =
             return@map todo
         }
     }
-

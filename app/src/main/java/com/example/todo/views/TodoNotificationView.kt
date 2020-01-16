@@ -1,18 +1,14 @@
 package com.example.todo.views
 
 import android.app.NotificationManager
-import android.content.Context
 import com.example.todo.model.Todo
 
-class TodoNotificationView(context: Context) {
-    private val notifications: Notifications =
-        Notifications(context)
-
-    fun showNotificationFor(todo: Todo) {
+class TodoNotificationView(private val notifications: Notifications) {
+    fun showNotification(todo: Todo) {
         val (id, text, priority) = todo
         notifications.showNotification(
             id?.toInt() ?: 0,
-            "TODO",
+            "To Do",
             text,
             todoPriorityToNotificationImportance(priority)
         )
