@@ -46,7 +46,7 @@ class Notifications(
 
     private fun notificationBuilder(importance: Int) =
         NotificationCompat.Builder(context, channels[importance])
-            .setSmallIcon(R.mipmap.ic_launcher)
+            .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setCategory(NotificationCompat.CATEGORY_REMINDER)
             .setOngoing(true)
             .setVisibility(VISIBILITY_PUBLIC)
