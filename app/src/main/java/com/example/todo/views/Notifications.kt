@@ -46,5 +46,5 @@ class Notifications(
             .setCategory(NotificationCompat.CATEGORY_REMINDER)
             .setOngoing(true)
             .setVisibility(VISIBILITY_PUBLIC)
-            .setGroup("com.example.todo.ALL")
+            .setGroup(channels.group)
 }

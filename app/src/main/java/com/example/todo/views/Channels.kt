@@ -1,11 +1,13 @@
 package com.example.todo.views
 
 import android.app.NotificationChannel
+import android.app.NotificationChannelGroup
 import android.app.NotificationManager
 import android.os.Build
 import androidx.annotation.RequiresApi
 
 class Channels(private val notificationManager: NotificationManager) {
+    val group: String = "com.example.todo.ALL"
     private val channels = mutableMapOf<Int, NotificationChannel>()
 
     operator fun get(importance: Int): String = channelId(importance)
@@ -21,6 +23,12 @@ class Channels(private val notificationManager: NotificationManager) {
             NotificationChannel(id, "todo_channel", importance).also {
                 it.description = "Notification channel where todo items appear."
                 notificationManager.createNotificationChannel(it)
+                notificationManager.createNotificationChannelGroup(
+                    NotificationChannelGroup(
+                        group,
+                        "Todo"
+                    )
+                )
             }
         }
 
