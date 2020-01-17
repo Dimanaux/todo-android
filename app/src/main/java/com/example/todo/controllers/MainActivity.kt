@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.todo.BuildConfig
 import com.example.todo.R
 import com.example.todo.dsl.onSubmit
+import com.example.todo.model.TodoBootstrapInteractor
 import com.example.todo.model.TodoCreateInteractor
 import com.example.todo.views.TodoNotificationView
 import com.facebook.stetho.Stetho
@@ -13,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     private lateinit var notificationView: TodoNotificationView
     private lateinit var todoCreateInteractor: TodoCreateInteractor
+    private lateinit var todoBootstrapInteractor: TodoBootstrapInteractor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,13 +26,12 @@ class MainActivity : AppCompatActivity() {
         if (BuildConfig.DEBUG) {
             Stetho.initializeWithDefaults(this)
         }
+
+        todoBootstrapInteractor.bootstrapNotifications(notificationView::show)
     }
 
     private fun createTodo(text: String) {
-        todoCreateInteractor.createNew(
-            text,
-            notificationView::showNotification
-        )
+        todoCreateInteractor.createNew(text, notificationView::show)
         todoInput.text.clear()
     }
 
@@ -38,5 +39,6 @@ class MainActivity : AppCompatActivity() {
         val componentFactory = ComponentFactory(this)
         notificationView = componentFactory.todoNotificationView
         todoCreateInteractor = componentFactory.todoCreateInteractor
+        todoBootstrapInteractor = componentFactory.todoBootstrapInteractor
     }
 }
