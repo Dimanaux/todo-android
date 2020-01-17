@@ -2,6 +2,7 @@ package com.example.todo.controllers
 
 import android.app.NotificationManager
 import android.content.Context
+import com.example.todo.model.TodoBootstrapInteractor
 import com.example.todo.model.TodoCreateInteractor
 import com.example.todo.model.TodoUpdateInteractor
 import com.example.todo.persistance.DatabaseFactory
@@ -15,6 +16,8 @@ internal class ComponentFactory(private val context: Context) {
     val todoCreateInteractor by lazy { TodoCreateInteractor(todoDao) }
 
     val todoUpdateInteractor by lazy { TodoUpdateInteractor(todoDao) }
+
+    val todoBootstrapInteractor by lazy { TodoBootstrapInteractor(todoDao) }
 
     private val todoDao by lazy { databaseFactory.todoDao() }
 
