@@ -21,8 +21,8 @@ class DoneBroadcastReceiver : BroadcastReceiver() {
         initialize(context)
 
         todoUpdateInteractor.markAsDoneById(
-            notificationId,
-            notificationView::showNotification
+            notificationId.toLong(),
+            notificationView::dismiss
         )
     }
 

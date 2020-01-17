@@ -14,13 +14,13 @@ interface TodoDao {
     fun findAll(): Flowable<Todo>
 
     @Query("SELECT * FROM todo WHERE id = :id LIMIT 1;")
-    fun findById(id: Int): Single<Todo>
+    fun findById(id: Long): Single<Todo>
 
-    @Query("SELECT * FROM todo WHERE status = :status")
-    fun findByStatus(status: Int): Flowable<Todo>
+    @Query("SELECT * FROM todo WHERE status = :status;")
+    fun findByStatus(status: Int): Single<List<Todo>>
 
     @Update
-    fun update(todo: Todo)
+    fun update(todo: Todo): Single<Int>
 
     @Delete
     fun delete(todo: Todo)

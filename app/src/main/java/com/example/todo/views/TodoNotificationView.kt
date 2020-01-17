@@ -4,7 +4,7 @@ import android.app.NotificationManager
 import com.example.todo.model.Todo
 
 class TodoNotificationView(private val notifications: Notifications) {
-    fun showNotification(todo: Todo) {
+    fun show(todo: Todo) {
         val (id, text, priority) = todo
         notifications.showNotification(
             id?.toInt() ?: 0,
@@ -12,6 +12,10 @@ class TodoNotificationView(private val notifications: Notifications) {
             text,
             todoPriorityToNotificationImportance(priority)
         )
+    }
+
+    fun dismiss(todo: Todo) {
+        notifications.cancel(todo.id?.toInt() ?: 0)
     }
 
     private fun todoPriorityToNotificationImportance(priority: Int) =

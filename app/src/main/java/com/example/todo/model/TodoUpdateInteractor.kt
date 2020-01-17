@@ -1,5 +1,6 @@
 package com.example.todo.model
 
+import com.example.todo.dsl.find
 import com.example.todo.dsl.save
 import com.example.todo.persistance.TodoDao
 import io.reactivex.Single
@@ -12,9 +13,8 @@ class TodoUpdateInteractor(private val todoDao: TodoDao) {
             .subscribe(whenUpdated)
     }
 
-    fun markAsDoneById(id: Int, whenUpdated: (Todo) -> Unit) {
-        val singleTodo = todoDao.findById(id)
-        val disposable = singleTodo
+    fun markAsDoneById(id: Long, whenUpdated: (Todo) -> Unit) {
+        val disposable = todoDao.find(id)
             .flatMap(this::markAsDone)
             .subscribe(whenUpdated)
     }

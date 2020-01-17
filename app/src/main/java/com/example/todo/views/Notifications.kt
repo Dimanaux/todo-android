@@ -22,6 +22,10 @@ class Notifications(
         notificationManager.notify(id, builder.build())
     }
 
+    fun cancel(id: Int) {
+        notificationManager.cancel(id)
+    }
+
     private fun doneAction(id: Int) =
         NotificationCompat.Action(
             R.mipmap.ic_launcher_round,
@@ -32,7 +36,7 @@ class Notifications(
     private fun doneIntent(id: Int): PendingIntent {
         return PendingIntent.getBroadcast(
             context,
-            0,
+            id,
             Intent(context, DoneBroadcastReceiver::class.java).apply {
                 putExtra("todoId", id)
             },
