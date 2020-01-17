@@ -2,13 +2,11 @@ package com.example.todo.controllers
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.todo.BuildConfig
 import com.example.todo.R
 import com.example.todo.dsl.onSubmit
 import com.example.todo.model.TodoBootstrapInteractor
 import com.example.todo.model.TodoCreateInteractor
 import com.example.todo.views.TodoNotificationView
-import com.facebook.stetho.Stetho
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -22,10 +20,6 @@ class MainActivity : AppCompatActivity() {
         initialize()
 
         todoInput.onSubmit(this::createTodo)
-
-        if (BuildConfig.DEBUG) {
-            Stetho.initializeWithDefaults(this)
-        }
 
         todoBootstrapInteractor.bootstrapNotifications(notificationView::show)
     }
