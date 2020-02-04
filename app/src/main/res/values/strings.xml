@@ -3,4 +3,5 @@
     <string name="create_todo">Create todo</string>
     <string name="todo_example">E.g. pour flowers</string>
     <string name="mark_as_done">Mark as Done</string>
+    <string name="priority_label">Priority</string>
 </resources>
