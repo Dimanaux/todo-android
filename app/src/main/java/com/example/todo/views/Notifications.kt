@@ -5,7 +5,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationCompat.VISIBILITY_PUBLIC
+import androidx.core.app.NotificationCompat.*
 import com.example.todo.R
 import com.example.todo.controllers.DoneBroadcastReceiver
 
@@ -51,4 +51,12 @@ class Notifications(
             .setOngoing(true)
             .setVisibility(VISIBILITY_PUBLIC)
             .setGroup(channels.group)
+            .setPriority(importance.toNotificationPriority())
+
+    private fun Int.toNotificationPriority() =
+        when (this) {
+            5 -> PRIORITY_HIGH
+            -5 -> PRIORITY_LOW
+            else -> PRIORITY_DEFAULT
+        }
 }

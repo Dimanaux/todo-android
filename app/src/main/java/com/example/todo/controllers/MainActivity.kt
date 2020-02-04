@@ -1,6 +1,7 @@
 package com.example.todo.controllers
 
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.example.todo.R
 import com.example.todo.dsl.onSubmit
@@ -22,10 +23,12 @@ class MainActivity : AppCompatActivity() {
         todoInput.onSubmit(this::createTodo)
 
         todoBootstrapInteractor.bootstrapNotifications(notificationView::show)
+
+        prioritySelector.adapter = ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, arrayOf(-5, 0, 5))
     }
 
     private fun createTodo(text: String) {
-        todoCreateInteractor.createNew(text, notificationView::show)
+        todoCreateInteractor.createNew(text, prioritySelector.selectedItem as Int, notificationView::show)
         todoInput.text.clear()
     }
 
